@@ -1,1 +1,3 @@
-<h2 class="font-bold text-2xl text-red-600">Welcom to page!</h2>
+<svelte:head>
+    <title>Sign-in</title>
+</svelte:head>
