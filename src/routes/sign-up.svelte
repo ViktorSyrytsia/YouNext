@@ -1,11 +1,12 @@
 <script lang="ts">
-    import { postData } from "../utils/fetch";
+    import { signUpRequest } from "./api/methods";
     const pageTitle: string = "I need to know your name first";
-    const onSignUp = (e: Event): void => {
-        console.log(e);
-        
-        e.preventDefault();
-        postData("/api.json", { foo: "bar" }).then((res) => console.log(res));
+
+    const onSignUp = (event: any): void => {
+        event.preventDefault();
+        signUpRequest(event.target)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
     };
 </script>
 
