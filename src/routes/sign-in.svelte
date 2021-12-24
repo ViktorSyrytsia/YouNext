@@ -1,5 +1,5 @@
 <script>
-    const pageTitle = "I need to know your name first"
+    const pageTitle = "I need to know your name first";
 </script>
 
 <svelte:head>

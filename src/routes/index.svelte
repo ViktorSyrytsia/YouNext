@@ -1,5 +1,27 @@
-<script>
-      const pageTitle = "Welcome to NextYou"
+<script context="module" lang="ts">
+    import type { Load } from "@sveltejs/kit";
+    import type { ICurrentUser } from "./api/models";
+
+    export const load: Load = async ({ fetch }) => {
+        const res = await fetch("/api.json");
+        if (res.ok) {
+            return {
+                props: {
+                    currentUser: await res.json(),
+                },
+            };
+        }
+        return {
+            status: res.status,
+            error: new Error(`Could not load /api.json`),
+        };
+    };
+</script>
+
+<script lang="ts">
+    import UserComponent from "../components/user-component.svelte";
+    const pageTitle = "Welcome to NextYou";
+    export let currentUser: ICurrentUser;
 </script>
 
 <svelte:head>
@@ -10,8 +32,9 @@
     {pageTitle}!
 </h1>
 <h2 class="text-4xl font-bold text-center text-teal-500">
-    Select one of your teams or create a new one
+    Select team or create a new one!
 </h2>
+<UserComponent {currentUser} />
 <div class="flex justify-center gap-4 mt-20">
     <a
         href="/sign-up"
