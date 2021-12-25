@@ -1,5 +1,13 @@
-<script>
+<script lang="ts">
+    import { signInRequest } from "./api/auth/methods";
     const pageTitle = "I need to know your name first";
+
+    const onSignIn = (event: any): void => {
+        event.preventDefault();
+        signInRequest(event.target)
+            .then(() => window.history.back())
+            .catch((err) => console.log(err));
+    };
 </script>
 
 <svelte:head>
@@ -15,12 +23,12 @@
 
 <div class="flex justify-center">
     <form
-        action=""
+        on:submit={(e) => onSignIn(e)}
         class="border-1 border-gray-200 mt-10 p-10 rounded-md shadow-md w-96"
     >
         <div class="input-wrapper">
             <label for="name">Enter you username:</label>
-            <input placeholder="John Doe" type="text" name="password" />
+            <input placeholder="John Doe" type="text" name="username" />
         </div>
         <div class="input-wrapper">
             <label for="password">Your password:</label>

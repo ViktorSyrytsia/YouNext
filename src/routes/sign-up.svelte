@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { signUpRequest } from "./api/methods";
+    import { signUpRequest } from "./api/auth/methods";
     const pageTitle: string = "I need to know your name first";
 
     const onSignUp = (event: any): void => {
         event.preventDefault();
         signUpRequest(event.target)
-            .then((res) => console.log(res))
+            .then(() => window.history.back())
             .catch((err) => console.log(err));
     };
 </script>
