@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
     import type { Load } from "@sveltejs/kit";
-    import type { ICurrentUser } from "./api/models";
 
     export const load: Load = async ({ fetch }) => {
         const res = await fetch("/api/auth.json");
@@ -20,6 +19,7 @@
 
 <script lang="ts">
     import UserComponent from "../components/user-component.svelte";
+    import type { ICurrentUser } from "./api/auth/auth.model";
     const pageTitle = "Welcome to NextYou";
     export let currentUser: ICurrentUser;
 </script>
