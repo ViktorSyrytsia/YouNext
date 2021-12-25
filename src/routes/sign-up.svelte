@@ -1,5 +1,13 @@
-<script>
-      const pageTitle = "I need to know your name first"
+<script lang="ts">
+    import { signUpRequest } from "./api/methods";
+    const pageTitle: string = "I need to know your name first";
+
+    const onSignUp = (event: any): void => {
+        event.preventDefault();
+        signUpRequest(event.target)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    };
 </script>
 
 <svelte:head>
@@ -15,16 +23,22 @@
 
 <div class="flex justify-center">
     <form
-        action=""
+        on:submit={(e) => onSignUp(e)}
         class="border-1 border-gray-200 mt-10 p-10 rounded-md shadow-md w-96"
     >
         <div class="input-wrapper">
             <label for="name">Enter you username:</label>
-            <input placeholder="John Doe" type="text" name="password" />
+            <input
+                autocomplete="off"
+                placeholder="John Doe"
+                type="text"
+                name="username"
+            />
         </div>
         <div class="input-wrapper">
             <label for="password">Your password:</label>
             <input
+                autocomplete="off"
                 placeholder="MySecretPassword"
                 type="password"
                 name="password"
@@ -33,6 +47,7 @@
         <div class="input-wrapper">
             <label for="confirmPassword">Repeat password:</label>
             <input
+                autocomplete="off"
                 placeholder="MySecretPassword"
                 type="password"
                 name="confirmPassword"
