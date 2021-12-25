@@ -1,9 +1,3 @@
-export interface ICurrentUser {
-    username: string;
-    password: string;
-    confirmPassword: string;
-}
-
 export interface IHttpResponse {
     status: number,
 }

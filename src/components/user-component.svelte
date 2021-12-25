@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ICurrentUser } from "src/routes/api/models";
+    import type { ICurrentUser } from "src/routes/api/auth/auth.model";
 
     export let currentUser: ICurrentUser;
 </script>
