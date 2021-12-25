@@ -1,11 +1,13 @@
 import type { RequestHandler } from "@sveltejs/kit";
-import type { ICurrentUser, IFailureHttpResponse, ISuccessHttpResponse } from "./models";
+import type { ICurrentUser, IFailureHttpResponse, ISuccessHttpResponse } from "../models";
 
 //TODO: Persist in database
 let currentUser: ICurrentUser = null;
 
 
 export const get: RequestHandler = () => {
+    console.log("GET: ", currentUser);
+
     return {
         status: 200,
         body: currentUser
@@ -13,6 +15,8 @@ export const get: RequestHandler = () => {
 }
 
 export const post: RequestHandler = (request): ISuccessHttpResponse<string> | IFailureHttpResponse => {
+    console.log("POST: ",  request.body);
+
     currentUser = request.body as any;
     if (currentUser) {
         return {

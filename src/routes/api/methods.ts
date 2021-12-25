@@ -7,5 +7,5 @@ export const signUpRequest = (form: any) => {
         password: password.value,
         confirmPassword: confirmPassword.value,
     };
-    return postData("/api.json", body);
+    return postData("/api/auth.json", body);
 }

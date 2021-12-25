@@ -3,7 +3,7 @@
     import type { ICurrentUser } from "./api/models";
 
     export const load: Load = async ({ fetch }) => {
-        const res = await fetch("/api.json");
+        const res = await fetch("/api/auth.json");
         if (res.ok) {
             return {
                 props: {
@@ -13,7 +13,7 @@
         }
         return {
             status: res.status,
-            error: new Error(`Could not load /api.json`),
+            error: new Error(`Could not load /api/auth.json`),
         };
     };
 </script>
@@ -35,21 +35,25 @@
     Select team or create a new one!
 </h2>
 <UserComponent {currentUser} />
-<div class="flex justify-center gap-4 mt-20">
-    <a
-        href="/sign-up"
-        class="w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
-    >
-        <img class="w-16" src="/icons/pencil-alt.svg" alt="" />
-        <div class="font-bold text-gray-700 mt-2 text-md uppercase">
-            Create team
-        </div>
-    </a>
-    <a
-        href="/sign-in"
-        class="w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
-    >
-        <img class="w-16" src="/icons/user-group.svg" alt="" />
-        <div class="font-bold text-gray-700 mt-2 text-md uppercase">Select</div>
-    </a>
-</div>
+{#if currentUser}
+    <div class="flex justify-center gap-4">
+        <a
+            href="/sign-up"
+            class="w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
+        >
+            <img class="w-16" src="/icons/pencil-alt.svg" alt="" />
+            <div class="font-bold text-gray-700 mt-2 text-md uppercase">
+                Create team
+            </div>
+        </a>
+        <a
+            href="/sign-in"
+            class="w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
+        >
+            <img class="w-16" src="/icons/user-group.svg" alt="" />
+            <div class="font-bold text-gray-700 mt-2 text-md uppercase">
+                Select
+            </div>
+        </a>
+    </div>
+{/if}
