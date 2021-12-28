@@ -38,7 +38,7 @@
 {#if currentUser}
     <div class="flex justify-center gap-4">
         <a
-            href="/sign-up"
+            href="/teams-create"
             class="w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
         >
             <img class="w-16" src="/icons/pencil-alt.svg" alt="" />
@@ -47,7 +47,7 @@
             </div>
         </a>
         <a
-            href="/sign-in"
+            href="/teams-list"
             class="w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
         >
             <img class="w-16" src="/icons/user-group.svg" alt="" />
