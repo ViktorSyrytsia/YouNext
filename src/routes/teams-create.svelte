@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+    import { postData } from "../utils/fetch";
+
     let teamName: string = "";
     let memberCounter = 0;
     let members: number[] = [];
@@ -7,11 +10,14 @@
         const teamname = e.target.name.value;
         const teamMembers = [];
         members.forEach((element) => {
-            teamMembers.push(e.target[element].value);
+            teamMembers.push(e.target[element - 1].value);
         });
-        // postData("/api/teams.json", { name: "Fist Team" }).then((res) => {
-        //     console.log({ res });
-        // });
+        postData("/api/teams.json", {
+            name: teamname,
+            members: teamMembers,
+        }).then((res) => {
+            goto("/teams-list");
+        });
     };
     const addMember = () => {
         members = [...members, ++memberCounter];
@@ -33,7 +39,7 @@
         <div class="input-wrapper">
             <label for="name">Enter team name:</label>
             <input
-                on:input={(e) => (teamName = e.target.value)}
+                on:input={(event) => (teamName = event.target["value"])}
                 placeholder="My Lovely team"
                 type="text"
                 name="name"
@@ -64,7 +70,10 @@
         </div>
 
         <div>
-            <button disabled={!(teamName && members.length > 0)} class="filled--primary">Create team</button>
+            <button
+                disabled={!(teamName && members.length > 0)}
+                class="filled--primary">Create team</button
+            >
             <button class="no-bg--primary">Back</button>
         </div>
     </form>

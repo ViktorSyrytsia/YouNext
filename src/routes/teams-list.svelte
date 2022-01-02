@@ -20,6 +20,7 @@
 
 <script lang="ts">
     export let teams: Team[];
+    console.log(teams);
 </script>
 
 <div>Hello Team-List works fine!{teams.length}</div>
