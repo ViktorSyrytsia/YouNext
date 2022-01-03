@@ -2,7 +2,7 @@ import type { Request } from "@sveltejs/kit";
 import type { Team } from "./team.model";
 import { createTeam } from "./teams.service";
 
-const teams: Team[] = [{ name: 'MockTeam', members: [] }];
+const teams: Team[] = [];
 
 export const api = (request: Request, teamBody?: Team) => {
     let body = {};
