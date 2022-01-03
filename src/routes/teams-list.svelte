@@ -26,7 +26,9 @@
 <h1 class="text-5xl font-bold mt-20 p-6 text-center text-gray-800">
     Select one of your teams!
 </h1>
-<h2 class="text-4xl font-bold text-center text-teal-500">Click on your team to start meeting</h2>
+<h2 class="text-4xl font-bold text-center text-teal-500">
+    Click on your team to start meeting
+</h2>
 
 {#if teams.length > 0}
     <div
@@ -34,15 +36,16 @@
     >
         {#each teams as team, index}
             <a
-                href="/teams-list"
-                class="m-3 w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
+                href={"/" + index + "-team"}
+                class="m-2 w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
             >
                 <div
                     class="bg-teal-500 rounded-full w-14 h-14 flex justify-center items-center"
                 >
                     <div class="text-white font-semibold text-2xl">
-                        {team.name[0].toUpperCase() +
-                            team.name[1].toUpperCase()}
+                        {team.name &&
+                            team.name[0].toUpperCase() +
+                                team.name[1].toUpperCase()}
                     </div>
                 </div>
                 <div class="font-bold text-gray-700 mt-2">{team.name}</div>
