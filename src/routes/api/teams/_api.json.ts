@@ -18,6 +18,11 @@ export const api = (request: Request, teamBody?: Team) => {
             body = teams;
             status = 200
             break;
+        case "DELETE":
+            const filteredTeams = teams.filter((_, index) => index !== +request.params.tid);
+            body = filteredTeams;
+            status = 200
+            break;
         default:
             break;
     }

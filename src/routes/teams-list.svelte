@@ -21,7 +21,20 @@
 <script lang="ts">
     import TeamCardComponent from "../components/team-card-component.svelte";
     export let teams: Team[];
-    console.log(teams);
+    const onTeamDelete = (e: CustomEvent<{ id: number }>) => {
+        fetch("/api/teams/" + e.detail.id + ".json", {
+            method: "DELETE",
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                teams = res;
+            })
+            .catch((err) => {
+                console.log({ err });
+            });
+    };
 </script>
 
 <h1 class="text-5xl font-bold mt-20 p-6 text-center text-gray-800">
@@ -36,7 +49,11 @@
         class="p-5 flex flex-wrap w-fit border-dashed border-4 border-gray-400 rounded-md mx-auto mt-10"
     >
         {#each teams as team, index}
-            <TeamCardComponent {team} {index} />
+            <TeamCardComponent
+                on:onDelete={(e) => onTeamDelete(e)}
+                {team}
+                {index}
+            />
         {/each}
     </div>
 {:else}

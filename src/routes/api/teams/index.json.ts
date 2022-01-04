@@ -8,3 +8,4 @@ export const get: RequestHandler = (request) => {
 export const post: RequestHandler = (request) => {
     return api(request, request.body as any)
 }
+

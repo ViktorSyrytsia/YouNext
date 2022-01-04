@@ -1,8 +1,16 @@
 <script lang="ts">
     import type { Team } from "src/routes/api/teams/team.model";
+    import { createEventDispatcher } from "svelte";
 
     export let index: number;
     export let team: Team;
+    const dispatch = createEventDispatcher();
+
+    const onTeamDelete = () => {
+        dispatch("onDelete", {
+            id: index,
+        });
+    };
 </script>
 
 <a
@@ -11,7 +19,8 @@
 >
     <div class="flex justify-end w-full">
         <div
-            class="rounded bg-rose-600 text-white w-6 h-6  flex justify-center items-center p-1"
+            on:click|preventDefault={onTeamDelete}
+            class="rounded bg-rose-600 text-white w-6 h-6  flex justify-center items-center p-1 hover:bg-rose-700"
         >
             <img src="/icons/trash.svg" alt="trash" />
         </div>
