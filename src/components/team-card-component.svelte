@@ -7,9 +7,15 @@
 
 <a
     href={"/" + index + "-team"}
-    class="m-2 w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
+    class="m-2 w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-between items-center"
 >
-<div><div>x</div></div>
+    <div class="flex justify-end w-full">
+        <div
+            class="rounded bg-rose-600 text-white w-6 h-6  flex justify-center items-center p-1"
+        >
+            <img src="/icons/trash.svg" alt="trash" />
+        </div>
+    </div>
     <div
         class="bg-teal-500 rounded-full w-14 h-14 flex justify-center items-center"
     >
