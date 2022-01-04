@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+    import TeamCardComponent from "../components/team-card-component.svelte";
     export let teams: Team[];
     console.log(teams);
 </script>
@@ -32,26 +33,19 @@
 
 {#if teams.length > 0}
     <div
-        class="p-5 flex flex-wrap w-1/4 border-dashed border-4 border-gray-400 rounded-md mx-auto mt-10"
+        class="p-5 flex flex-wrap w-fit border-dashed border-4 border-gray-400 rounded-md mx-auto mt-10"
     >
         {#each teams as team, index}
-            <a
-                href={"/" + index + "-team"}
-                class="m-2 w-48 h-48 p-4 shadow-md rounded-md hover:shadow-xl cursor-pointer border-1 border-gray-200 transition-shadow flex flex-col justify-center items-center"
-            >
-                <div
-                    class="bg-teal-500 rounded-full w-14 h-14 flex justify-center items-center"
-                >
-                    <div class="text-white font-semibold text-2xl">
-                        {team.name &&
-                            team.name[0].toUpperCase() +
-                                team.name[1].toUpperCase()}
-                    </div>
-                </div>
-                <div class="font-bold text-gray-700 mt-2">{team.name}</div>
-            </a>
+            <TeamCardComponent {team} {index} />
         {/each}
     </div>
 {:else}
-    <div>There no teams yet</div>
+    <div
+        class="font-bold text-gray-800 text-xl text-center mt-10 border-dashed border-4 border-gray-400 rounded-md w-1/2 mx-auto p-10"
+    >
+        Oops...There are no teams yet. First you need to <span
+            class="text-teal-500 cursor-pointer"
+            ><a href="/teams-create">create</a></span
+        > at least one
+    </div>
 {/if}
